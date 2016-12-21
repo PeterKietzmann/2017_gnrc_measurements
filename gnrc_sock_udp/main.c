@@ -228,15 +228,6 @@ int main(void)
     char dst_addr_str[] = "::1";
 #endif
 
-    /* Create local sock */
-    sock_udp_ep_t local = SOCK_IPV6_EP_ANY;
-    sock_udp_t sock;
-    local.port = UDP_PORT;
-    if (sock_udp_create(&sock, &local, NULL, 0) < 0) {
-        puts("Error creating UDP sock");
-        return 1;
-    }
-
     /* Set remote */
     sock_udp_ep_t remote = { .family = AF_INET6 };
     remote.port = UDP_PORT;
@@ -257,7 +248,7 @@ int main(void)
 #endif
 
             /* send udp packet */
-            sock_udp_send(&sock, &data, j, &remote);
+            sock_udp_send(NULL, &data, j, &remote);
 
 
 #if DELAY_PACKET_US
