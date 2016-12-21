@@ -252,10 +252,6 @@ int main(void)
         DEBUG("added address to NC\n");
     }
 
-#if ENABLE_DEBUG
-    _ipv6_nc_list();
-#endif
-
     /* parse destination address */
     if (inet_pton(AF_INET6, dst_addr_str, &dst.sin6_addr) != 1) {
         DEBUG("Error: unable to parse destination address");
